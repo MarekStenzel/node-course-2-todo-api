@@ -16,7 +16,7 @@ var hashedPassword = '$2a$10$pd6kaVT/ugzV/nffwOCCS.vVFfJhRi8Cq9ksnZ.j.6iKYo6yGPh
 
 bcrypt.compare('123', hashedPassword, (err, res) => {
     console.log(res);
-})
+});
 
 
 
