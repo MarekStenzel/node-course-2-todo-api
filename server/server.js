@@ -10,25 +10,31 @@ var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
 var {Project} = require('./models/project');
 var {authenticate} = require('./middleware/authenticate');
+var cors = require('cors');
+var corsOptions = {
+    exposedHeaders: "*",
+    credentials: true,
+    origin: 'http://localhost:4200'
+};
 
 var app = express();
 const port = process.env.PORT;
 
 app.use(bodyParser.json());
-/*
-app.post('/todos', authenticate, (req, res) => {
-    var todo = new Todo({
-        text: req.body.text,
-        _creator: req.user._id
-    });
+app.use(cors(corsOptions));
 
-    todo.save().then((doc) => {
-        res.send(doc);
-    }, (e) => {
-        res.status(400).send(e);
-    });
-});
-*/
+//
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
+
+// header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+// header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Custom-header");
+// header("Access-Control-Expose-Headers: X-Custom-header");
+// header("X-Custom-header: $some data");
+
 
 
 app.post('/projects', authenticate, (req, res) => {
