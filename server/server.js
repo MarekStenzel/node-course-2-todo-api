@@ -13,6 +13,7 @@ var {authenticate} = require('./middleware/authenticate');
 var cors = require('cors');
 var corsOptions = {
     exposedHeaders: "*",
+    allowedHeaders: "x-auth,Content-Type",
     credentials: true,
     origin: 'http://localhost:4200'
 };
@@ -42,6 +43,8 @@ app.post('/projects', authenticate, (req, res) => {
         task: req.body.task,
         hours: req.body.hours,
         minutes: req.body.minutes,
+        dateStart: req.body.dateStart,
+        dateStop: req.body.dateStop,
         _creator: req.user._id
     });
 
